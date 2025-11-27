@@ -1,6 +1,6 @@
 # 图片盲水印工具
 
-源码来自逆向，工具：dnSpyEx
+源码来自逆向，工具：JetBrains DotPeek
 
 原帖：https://www.52pojie.cn/thread-1980917-1-1.html
 
