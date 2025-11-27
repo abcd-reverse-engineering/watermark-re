@@ -1,351 +1,242 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: WaterMark.ComplexF
+// Assembly: WaterMark, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: C7EFC8A5-D9E6-406C-B30C-DB9385FC45E9
+// Assembly location: C:\Users\Administrator\Downloads\WaterMark_1.0_Single.exe
 
-namespace WaterMark
+using System;
+
+#nullable disable
+namespace WaterMark;
+
+public struct ComplexF : IComparable, ICloneable
 {
-	// Token: 0x02000005 RID: 5
-	public struct ComplexF : IComparable, ICloneable
-	{
-		// Token: 0x06000059 RID: 89 RVA: 0x000036CD File Offset: 0x000018CD
-		public ComplexF(float real, float imaginary)
-		{
-			this.Re = real;
-			this.Im = imaginary;
-		}
+  public float Re;
+  public float Im;
 
-		// Token: 0x0600005A RID: 90 RVA: 0x000036DF File Offset: 0x000018DF
-		public ComplexF(ComplexF c)
-		{
-			this.Re = c.Re;
-			this.Im = c.Im;
-		}
+  public ComplexF(float real, float imaginary)
+  {
+    this.Re = real;
+    this.Im = imaginary;
+  }
 
-		// Token: 0x0600005B RID: 91 RVA: 0x000036FC File Offset: 0x000018FC
-		public static ComplexF FromRealImaginary(float real, float imaginary)
-		{
-			ComplexF complexF;
-			complexF.Re = real;
-			complexF.Im = imaginary;
-			return complexF;
-		}
+  public ComplexF(ComplexF c)
+  {
+    this.Re = c.Re;
+    this.Im = c.Im;
+  }
 
-		// Token: 0x0600005C RID: 92 RVA: 0x0000371C File Offset: 0x0000191C
-		public static ComplexF FromModulusArgument(float modulus, float argument)
-		{
-			ComplexF complexF;
-			complexF.Re = (float)((double)modulus * Math.Cos((double)argument));
-			complexF.Im = (float)((double)modulus * Math.Sin((double)argument));
-			return complexF;
-		}
+  public static ComplexF FromRealImaginary(float real, float imaginary)
+  {
+    ComplexF complexF;
+    complexF.Re = real;
+    complexF.Im = imaginary;
+    return complexF;
+  }
 
-		// Token: 0x0600005D RID: 93 RVA: 0x0000374E File Offset: 0x0000194E
-		object ICloneable.Clone()
-		{
-			return new ComplexF(this);
-		}
+  public static ComplexF FromModulusArgument(float modulus, float argument)
+  {
+    ComplexF complexF;
+    complexF.Re = modulus * (float) Math.Cos((double) argument);
+    complexF.Im = modulus * (float) Math.Sin((double) argument);
+    return complexF;
+  }
 
-		// Token: 0x0600005E RID: 94 RVA: 0x00003760 File Offset: 0x00001960
-		public ComplexF Clone()
-		{
-			return new ComplexF(this);
-		}
+  object ICloneable.Clone() => (object) new ComplexF(this);
 
-		// Token: 0x0600005F RID: 95 RVA: 0x00003770 File Offset: 0x00001970
-		public float GetModulus()
-		{
-			float re = this.Re;
-			float im = this.Im;
-			return (float)Math.Sqrt((double)(re * re + im * im));
-		}
+  public ComplexF Clone() => new ComplexF(this);
 
-		// Token: 0x06000060 RID: 96 RVA: 0x0000379C File Offset: 0x0000199C
-		public float GetModulusSquared()
-		{
-			float re = this.Re;
-			float im = this.Im;
-			return re * re + im * im;
-		}
+  public float GetModulus()
+  {
+    float re = this.Re;
+    float im = this.Im;
+    return (float) Math.Sqrt((double) re * (double) re + (double) im * (double) im);
+  }
 
-		// Token: 0x06000061 RID: 97 RVA: 0x000037BF File Offset: 0x000019BF
-		public float GetArgument()
-		{
-			return (float)Math.Atan2((double)this.Im, (double)this.Re);
-		}
+  public float GetModulusSquared()
+  {
+    float re = this.Re;
+    float im = this.Im;
+    return (float) ((double) re * (double) re + (double) im * (double) im);
+  }
 
-		// Token: 0x06000062 RID: 98 RVA: 0x000037D5 File Offset: 0x000019D5
-		public ComplexF GetConjugate()
-		{
-			return ComplexF.FromRealImaginary(this.Re, -this.Im);
-		}
+  public float GetArgument() => (float) Math.Atan2((double) this.Im, (double) this.Re);
 
-		// Token: 0x06000063 RID: 99 RVA: 0x000037EC File Offset: 0x000019EC
-		public void Normalize()
-		{
-			double num = (double)this.GetModulus();
-			if (num == 0.0)
-			{
-				throw new DivideByZeroException("Can not normalize a complex number that is zero.");
-			}
-			this.Re = (float)((double)this.Re / num);
-			this.Im = (float)((double)this.Im / num);
-		}
+  public ComplexF GetConjugate() => ComplexF.FromRealImaginary(this.Re, -this.Im);
 
-		// Token: 0x06000064 RID: 100 RVA: 0x00003838 File Offset: 0x00001A38
-		public static explicit operator ComplexF(Complex c)
-		{
-			ComplexF complexF;
-			complexF.Re = (float)c.Re;
-			complexF.Im = (float)c.Im;
-			return complexF;
-		}
+  public void Normalize()
+  {
+    double modulus = (double) this.GetModulus();
+    if (modulus == 0.0)
+      throw new DivideByZeroException("Can not normalize a complex number that is zero.");
+    this.Re /= (float) modulus;
+    this.Im /= (float) modulus;
+  }
 
-		// Token: 0x06000065 RID: 101 RVA: 0x00003864 File Offset: 0x00001A64
-		public static explicit operator ComplexF(float f)
-		{
-			ComplexF complexF;
-			complexF.Re = f;
-			complexF.Im = 0f;
-			return complexF;
-		}
+  public static explicit operator ComplexF(Complex c)
+  {
+    ComplexF complexF;
+    complexF.Re = (float) c.Re;
+    complexF.Im = (float) c.Im;
+    return complexF;
+  }
 
-		// Token: 0x06000066 RID: 102 RVA: 0x00003887 File Offset: 0x00001A87
-		public static explicit operator float(ComplexF c)
-		{
-			return c.Re;
-		}
+  public static explicit operator ComplexF(float f)
+  {
+    ComplexF complexF;
+    complexF.Re = f;
+    complexF.Im = 0.0f;
+    return complexF;
+  }
 
-		// Token: 0x06000067 RID: 103 RVA: 0x00003891 File Offset: 0x00001A91
-		public static bool operator ==(ComplexF a, ComplexF b)
-		{
-			return a.Re == b.Re && a.Im == b.Im;
-		}
+  public static explicit operator float(ComplexF c) => c.Re;
 
-		// Token: 0x06000068 RID: 104 RVA: 0x000038B5 File Offset: 0x00001AB5
-		public static bool operator !=(ComplexF a, ComplexF b)
-		{
-			return a.Re != b.Re || a.Im != b.Im;
-		}
+  public static bool operator ==(ComplexF a, ComplexF b)
+  {
+    return (double) a.Re == (double) b.Re && (double) a.Im == (double) b.Im;
+  }
 
-		// Token: 0x06000069 RID: 105 RVA: 0x000038DC File Offset: 0x00001ADC
-		public override int GetHashCode()
-		{
-			return this.Re.GetHashCode() ^ this.Im.GetHashCode();
-		}
+  public static bool operator !=(ComplexF a, ComplexF b)
+  {
+    return (double) a.Re != (double) b.Re || (double) a.Im != (double) b.Im;
+  }
 
-		// Token: 0x0600006A RID: 106 RVA: 0x000038F8 File Offset: 0x00001AF8
-		public override bool Equals(object o)
-		{
-			if (o is ComplexF)
-			{
-				ComplexF complexF = (ComplexF)o;
-				return this == complexF;
-			}
-			return false;
-		}
+  public override int GetHashCode() => this.Re.GetHashCode() ^ this.Im.GetHashCode();
 
-		// Token: 0x0600006B RID: 107 RVA: 0x00003924 File Offset: 0x00001B24
-		public int CompareTo(object o)
-		{
-			if (o == null)
-			{
-				return 1;
-			}
-			if (o is ComplexF)
-			{
-				return this.GetModulus().CompareTo(((ComplexF)o).GetModulus());
-			}
-			if (o is float)
-			{
-				return this.GetModulus().CompareTo((float)o);
-			}
-			if (o is Complex)
-			{
-				return this.GetModulus().CompareTo(((Complex)o).GetModulus());
-			}
-			if (o is double)
-			{
-				return this.GetModulus().CompareTo((double)o);
-			}
-			throw new ArgumentException();
-		}
+  public override bool Equals(object o) => o is ComplexF complexF && this == complexF;
 
-		// Token: 0x0600006C RID: 108 RVA: 0x000039CB File Offset: 0x00001BCB
-		public static ComplexF operator +(ComplexF a)
-		{
-			return a;
-		}
+  public int CompareTo(object o)
+  {
+    switch (o)
+    {
+      case null:
+        return 1;
+      case ComplexF complexF:
+        return this.GetModulus().CompareTo(complexF.GetModulus());
+      case float num1:
+        return this.GetModulus().CompareTo(num1);
+      case Complex complex:
+        return this.GetModulus().CompareTo((object) complex.GetModulus());
+      case double num2:
+        return this.GetModulus().CompareTo((object) num2);
+      default:
+        throw new ArgumentException();
+    }
+  }
 
-		// Token: 0x0600006D RID: 109 RVA: 0x000039CE File Offset: 0x00001BCE
-		public static ComplexF operator -(ComplexF a)
-		{
-			a.Re = -a.Re;
-			a.Im = -a.Im;
-			return a;
-		}
+  public static ComplexF operator +(ComplexF a) => a;
 
-		// Token: 0x0600006E RID: 110 RVA: 0x000039EF File Offset: 0x00001BEF
-		public static ComplexF operator +(ComplexF a, float f)
-		{
-			a.Re += f;
-			return a;
-		}
+  public static ComplexF operator -(ComplexF a)
+  {
+    a.Re = -a.Re;
+    a.Im = -a.Im;
+    return a;
+  }
 
-		// Token: 0x0600006F RID: 111 RVA: 0x00003A03 File Offset: 0x00001C03
-		public static ComplexF operator +(float f, ComplexF a)
-		{
-			a.Re += f;
-			return a;
-		}
+  public static ComplexF operator +(ComplexF a, float f)
+  {
+    a.Re += f;
+    return a;
+  }
 
-		// Token: 0x06000070 RID: 112 RVA: 0x00003A17 File Offset: 0x00001C17
-		public static ComplexF operator +(ComplexF a, ComplexF b)
-		{
-			a.Re += b.Re;
-			a.Im += b.Im;
-			return a;
-		}
+  public static ComplexF operator +(float f, ComplexF a)
+  {
+    a.Re += f;
+    return a;
+  }
 
-		// Token: 0x06000071 RID: 113 RVA: 0x00003A46 File Offset: 0x00001C46
-		public static ComplexF operator -(ComplexF a, float f)
-		{
-			a.Re -= f;
-			return a;
-		}
+  public static ComplexF operator +(ComplexF a, ComplexF b)
+  {
+    a.Re += b.Re;
+    a.Im += b.Im;
+    return a;
+  }
 
-		// Token: 0x06000072 RID: 114 RVA: 0x00003A5A File Offset: 0x00001C5A
-		public static ComplexF operator -(float f, ComplexF a)
-		{
-			a.Re = f - a.Re;
-			a.Im = 0f - a.Im;
-			return a;
-		}
+  public static ComplexF operator -(ComplexF a, float f)
+  {
+    a.Re -= f;
+    return a;
+  }
 
-		// Token: 0x06000073 RID: 115 RVA: 0x00003A83 File Offset: 0x00001C83
-		public static ComplexF operator -(ComplexF a, ComplexF b)
-		{
-			a.Re -= b.Re;
-			a.Im -= b.Im;
-			return a;
-		}
+  public static ComplexF operator -(float f, ComplexF a)
+  {
+    a.Re = f - a.Re;
+    a.Im = 0.0f - a.Im;
+    return a;
+  }
 
-		// Token: 0x06000074 RID: 116 RVA: 0x00003AB2 File Offset: 0x00001CB2
-		public static ComplexF operator *(ComplexF a, float f)
-		{
-			a.Re *= f;
-			a.Im *= f;
-			return a;
-		}
+  public static ComplexF operator -(ComplexF a, ComplexF b)
+  {
+    a.Re -= b.Re;
+    a.Im -= b.Im;
+    return a;
+  }
 
-		// Token: 0x06000075 RID: 117 RVA: 0x00003AD7 File Offset: 0x00001CD7
-		public static ComplexF operator *(float f, ComplexF a)
-		{
-			a.Re *= f;
-			a.Im *= f;
-			return a;
-		}
+  public static ComplexF operator *(ComplexF a, float f)
+  {
+    a.Re *= f;
+    a.Im *= f;
+    return a;
+  }
 
-		// Token: 0x06000076 RID: 118 RVA: 0x00003AFC File Offset: 0x00001CFC
-		public static ComplexF operator *(ComplexF a, ComplexF b)
-		{
-			double num = (double)a.Re;
-			double num2 = (double)a.Im;
-			double num3 = (double)b.Re;
-			double num4 = (double)b.Im;
-			a.Re = (float)(num * num3 - num2 * num4);
-			a.Im = (float)(num * num4 + num2 * num3);
-			return a;
-		}
+  public static ComplexF operator *(float f, ComplexF a)
+  {
+    a.Re *= f;
+    a.Im *= f;
+    return a;
+  }
 
-		// Token: 0x06000077 RID: 119 RVA: 0x00003B4C File Offset: 0x00001D4C
-		public static ComplexF operator /(ComplexF a, float f)
-		{
-			if (f == 0f)
-			{
-				throw new DivideByZeroException();
-			}
-			a.Re /= f;
-			a.Im /= f;
-			return a;
-		}
+  public static ComplexF operator *(ComplexF a, ComplexF b)
+  {
+    double re1 = (double) a.Re;
+    double im1 = (double) a.Im;
+    double re2 = (double) b.Re;
+    double im2 = (double) b.Im;
+    a.Re = (float) (re1 * re2 - im1 * im2);
+    a.Im = (float) (re1 * im2 + im1 * re2);
+    return a;
+  }
 
-		// Token: 0x06000078 RID: 120 RVA: 0x00003B80 File Offset: 0x00001D80
-		public static ComplexF operator /(ComplexF a, ComplexF b)
-		{
-			double num = (double)a.Re;
-			double num2 = (double)a.Im;
-			double num3 = (double)b.Re;
-			double num4 = (double)b.Im;
-			double num5 = num3 * num3 + num4 * num4;
-			if (num5 == 0.0)
-			{
-				throw new DivideByZeroException();
-			}
-			a.Re = (float)((num * num3 + num2 * num4) / num5);
-			a.Im = (float)((num2 * num3 - num * num4) / num5);
-			return a;
-		}
+  public static ComplexF operator /(ComplexF a, float f)
+  {
+    if ((double) f == 0.0)
+      throw new DivideByZeroException();
+    a.Re /= f;
+    a.Im /= f;
+    return a;
+  }
 
-		// Token: 0x06000079 RID: 121 RVA: 0x00003BF2 File Offset: 0x00001DF2
-		public static ComplexF Parse(string s)
-		{
-			throw new NotImplementedException("ComplexF ComplexF.Parse( string s ) is not implemented.");
-		}
+  public static ComplexF operator /(ComplexF a, ComplexF b)
+  {
+    double re1 = (double) a.Re;
+    double im1 = (double) a.Im;
+    double re2 = (double) b.Re;
+    double im2 = (double) b.Im;
+    double num = re2 * re2 + im2 * im2;
+    if (num == 0.0)
+      throw new DivideByZeroException();
+    a.Re = (float) ((re1 * re2 + im1 * im2) / num);
+    a.Im = (float) ((im1 * re2 - re1 * im2) / num);
+    return a;
+  }
 
-		// Token: 0x0600007A RID: 122 RVA: 0x00003BFE File Offset: 0x00001DFE
-		public override string ToString()
-		{
-			return string.Format("( {0}, {1}i )", this.Re, this.Im);
-		}
+  public static ComplexF Parse(string s)
+  {
+    throw new NotImplementedException("ComplexF ComplexF.Parse( string s ) is not implemented.");
+  }
 
-		// Token: 0x0600007B RID: 123 RVA: 0x00003C20 File Offset: 0x00001E20
-		public static bool IsEqual(ComplexF a, ComplexF b, float tolerance)
-		{
-			return Math.Abs(a.Re - b.Re) < tolerance && Math.Abs(a.Im - b.Im) < tolerance;
-		}
+  public override string ToString() => $"( {this.Re}, {this.Im}i )";
 
-		// Token: 0x1700000B RID: 11
-		// (get) Token: 0x0600007C RID: 124 RVA: 0x00003C52 File Offset: 0x00001E52
-		public static ComplexF Zero
-		{
-			get
-			{
-				return new ComplexF(0f, 0f);
-			}
-		}
+  public static bool IsEqual(ComplexF a, ComplexF b, float tolerance)
+  {
+    return (double) Math.Abs(a.Re - b.Re) < (double) tolerance && (double) Math.Abs(a.Im - b.Im) < (double) tolerance;
+  }
 
-		// Token: 0x1700000C RID: 12
-		// (get) Token: 0x0600007D RID: 125 RVA: 0x00003C63 File Offset: 0x00001E63
-		public static ComplexF I
-		{
-			get
-			{
-				return new ComplexF(0f, 1f);
-			}
-		}
+  public static ComplexF Zero => new ComplexF(0.0f, 0.0f);
 
-		// Token: 0x1700000D RID: 13
-		// (get) Token: 0x0600007E RID: 126 RVA: 0x00003C74 File Offset: 0x00001E74
-		public static ComplexF MaxValue
-		{
-			get
-			{
-				return new ComplexF(float.MaxValue, float.MaxValue);
-			}
-		}
+  public static ComplexF I => new ComplexF(0.0f, 1f);
 
-		// Token: 0x1700000E RID: 14
-		// (get) Token: 0x0600007F RID: 127 RVA: 0x00003C85 File Offset: 0x00001E85
-		public static ComplexF MinValue
-		{
-			get
-			{
-				return new ComplexF(float.MinValue, float.MinValue);
-			}
-		}
+  public static ComplexF MaxValue => new ComplexF(float.MaxValue, float.MaxValue);
 
-		// Token: 0x0400000C RID: 12
-		public float Re;
-
-		// Token: 0x0400000D RID: 13
-		public float Im;
-	}
+  public static ComplexF MinValue => new ComplexF(float.MinValue, float.MinValue);
 }

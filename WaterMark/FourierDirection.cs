@@ -1,13 +1,14 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: WaterMark.FourierDirection
+// Assembly: WaterMark, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: C7EFC8A5-D9E6-406C-B30C-DB9385FC45E9
+// Assembly location: C:\Users\Administrator\Downloads\WaterMark_1.0_Single.exe
 
-namespace WaterMark
+#nullable disable
+namespace WaterMark;
+
+public enum FourierDirection
 {
-	// Token: 0x02000009 RID: 9
-	public enum FourierDirection
-	{
-		// Token: 0x04000021 RID: 33
-		Forward = 1,
-		// Token: 0x04000022 RID: 34
-		Backward = -1
-	}
+  Backward = -1, // 0xFFFFFFFF
+  Forward = 1,
 }

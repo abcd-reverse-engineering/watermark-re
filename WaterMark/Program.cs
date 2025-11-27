@@ -1,18 +1,22 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: WaterMark.Program
+// Assembly: WaterMark, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: C7EFC8A5-D9E6-406C-B30C-DB9385FC45E9
+// Assembly location: C:\Users\Administrator\Downloads\WaterMark_1.0_Single.exe
+
+using System;
 using System.Windows.Forms;
 
-namespace WaterMark
+#nullable disable
+namespace WaterMark;
+
+internal static class Program
 {
-	// Token: 0x02000011 RID: 17
-	internal static class Program
-	{
-		// Token: 0x060000FD RID: 253 RVA: 0x000090B4 File Offset: 0x000072B4
-		[STAThread]
-		private static void Main()
-		{
-			Application.EnableVisualStyles();
-			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new WaterMark());
-		}
-	}
+  [STAThread]
+  private static void Main()
+  {
+    Application.EnableVisualStyles();
+    Application.SetCompatibleTextRenderingDefault(false);
+    Application.Run((Form) new WaterMark.WaterMark());
+  }
 }

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Diagnostics;
-using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Runtime.Versioning;
 
-[assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
@@ -16,3 +11,4 @@ using System.Runtime.Versioning;
 [assembly: ComVisible(false)]
 [assembly: Guid("42be9b79-8d19-4e47-8037-c763667eeeed")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
