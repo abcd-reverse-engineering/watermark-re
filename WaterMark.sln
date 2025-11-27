@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterMark", "WaterMark\WaterMark.csproj", "{46B55DD3-9C90-4AAB-9799-7B0127218784}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterMark", "WaterMark\WaterMark.csproj", "{009671E9-B0D7-44AF-9C89-8A7B0B945CD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{46B55DD3-9C90-4AAB-9799-7B0127218784}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{46B55DD3-9C90-4AAB-9799-7B0127218784}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{46B55DD3-9C90-4AAB-9799-7B0127218784}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{46B55DD3-9C90-4AAB-9799-7B0127218784}.Release|Any CPU.Build.0 = Release|Any CPU
+		{009671E9-B0D7-44AF-9C89-8A7B0B945CD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{009671E9-B0D7-44AF-9C89-8A7B0B945CD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{009671E9-B0D7-44AF-9C89-8A7B0B945CD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{009671E9-B0D7-44AF-9C89-8A7B0B945CD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
